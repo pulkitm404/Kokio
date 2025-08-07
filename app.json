@@ -15,7 +15,11 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.kokio"
+      "bundleIdentifier": "app.kokio",
+      "associatedDomains": ["webcredentials:kokio.app"],
+      "config": {
+        "usesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -31,9 +35,28 @@
     },
     "plugins": [
       "expo-router",
-      "expo-secure-store",
       "expo-font",
-      "react-native-passkey"
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 34,
+            "targetSdkVersion": 34,
+            "buildToolsVersion": "34.0.0"
+          },
+          "ios": {
+            "deploymentTarget": "17.0"
+          }
+        }
+      ],
+      [
+        "expo-secure-store",
+        {
+          "configureAndroidBackup": true,
+          "faceIDPermission": "Allow KOKIO to access your Face ID biometric data."
+        }
+      ],
+      "expo-asset"
     ],
     "experiments": {
       "typedRoutes": true
